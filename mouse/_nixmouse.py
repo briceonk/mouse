@@ -92,7 +92,10 @@ def listen(queue):
             if code == REL_WHEEL:
                 event = WheelEvent(value, time)
             elif code in (REL_X, REL_Y):
-                x, y = get_position()
+                # x, y = get_position()
+                # Changed to relative coordinates
+                x = value if code == REL_X else 0
+                y = value if code == REL_Y else 0
                 event = MoveEvent(x, y, time)
 
         if event is None:
